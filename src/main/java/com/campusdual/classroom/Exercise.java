@@ -39,30 +39,20 @@ public class Exercise {
 
     //TODO
     public static int[][] flatTridimensionalArray(int[][][] intArrayTri) {
-        if (intArrayTri == null || intArrayTri.length == 0) {
-            return new int[0][0];
-        }
-        int depth = intArrayTri.length;
         int rows = intArrayTri[0].length;
-        int cols = intArrayTri[0][0].length;
+        int columns = intArrayTri[0].length;
 
-        int[][] flat = new int[rows][cols];
+        int[][] result = new int[rows][columns];
 
-        for (int d = 0; d < depth; d++) {
-            if (intArrayTri[d].length != rows) {
-                throw new IllegalArgumentException("Todas las profundidades deben tener el mismo número de filas.");
-            }
+        for (int d = 0; d < intArrayTri.length; d++) {
             for (int r = 0; r < rows; r++) {
-                if (intArrayTri[d][r].length != cols) {
-                    throw new IllegalArgumentException("Todas las filas deben tener el mismo número de columnas.");
-                }
-                for (int c = 0; c < cols; c++) {
-                    flat[r][c] += intArrayTri[d][r][c];
+                for (int c = 0; c < columns; c++) {
+                    result[r][c] += intArrayTri[d][r][c];
+
                 }
             }
         }
-
-        return flat;
+        return result;
     }
 
 
@@ -80,51 +70,55 @@ public class Exercise {
 
     // TODO
     public static String getUnidimensionalString(int[] uniArray) {
-        if (uniArray == null || uniArray.length == 0) return "";
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < uniArray.length; i++) {
-            if (i > 0) sb.append(" ");
+        for (int i =0; i<uniArray.length;i++){
             sb.append(uniArray[i]);
+            if (i <uniArray.length - 1){
+                sb.append(" ");
+            }
         }
         return sb.toString();
+
     }
 
     // TODO
     public static int[] createAndPopulateUnidimensionalArray(int columns) {
-        if (columns <= 0) return new int[0];
-        int[] arr = new int[columns];
-        for (int c = 0; c < columns; c++) {
-            arr[c] = c + 1;
+        int[] unidim = new int[columns];
+        int value = 1;
+        for (int i = 0; i < columns; i++) {
+            unidim[i] = value++;
         }
-        return arr;
+        return unidim;
+
     }
 
     // TODO
     public static int[][] createAndPopulateBidimensionalArray(int rows, int columns) {
-        if (rows <= 0 || columns <= 0) return new int[0][0];
-        int[][] arr = new int[rows][columns];
-        int val = 1;
-        for (int r = 0; r < rows; r++) {
-            for (int c = 0; c < columns; c++) {
-                arr[r][c] = val++;
+        int[][] bidim = new int[rows][columns];
+        int value = 1;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                bidim[i][j] = value++;
             }
         }
-        return arr;
+        return bidim;
+
     }
 
     // TODO
     public static int[][][] createAndPopulateTridimensionalArray(int depth, int rows, int columns) {
-        if (depth <= 0 || rows <= 0 || columns <= 0) return new int[0][0][0];
-        int[][][] arr = new int[depth][rows][columns];
-        int val = 1;
+        int[][][] tridim = new int[depth][rows][columns];
+        int value = 1;
         for (int d = 0; d < depth; d++) {
             for (int r = 0; r < rows; r++) {
                 for (int c = 0; c < columns; c++) {
-                    arr[d][r][c] = val++;
+                    tridim[d][r][c] = value++;
                 }
             }
+
         }
-        return arr;
+        return tridim;
+
     }
 
     public static void main(String[] args) {
